@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   web:
-    build: ./firstProject
+    build: ./project
     command: python3 main.py  -h 0.0.0.0
     volumes:
-      - ./firstProject/:/usr/src/app/
+      - ./project/:/usr/src/app/
     ports:
       - 5001:5000
