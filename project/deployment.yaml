@@ -1,22 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devops-midterm-deployment
-  namespace: mustafa
-  labels:
-    app: devops-midterm-deployment
-spec:
-  replicas: 4
-  selector:
-    matchLabels:
-      app: devops-midterm-deployment
-  template:
-    metadata:
-      labels:
+    name: devops-midterm-deployment
+    namespace: default
+    labels:
         app: devops-midterm-deployment
-    spec:
-      containers:
-      - name: uni-app
-        image: mustafakamber/devopstech:latest
-        ports:
-        - containerPort: 5000
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: devops-midterm-deployment
+    template:
+        metadata:
+            labels:
+                app: devops-midterm-deployment
+        spec:
+            containers:
+                - name: devops-midterm-deployment
+                  image: mustafakamber/devopstech:latest
+                  ports:
+                      - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: devops-midterm-deployment
+    namespace: default
+spec:
+    selector:
+        app: devops-midterm-deployment
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 5000
+    type: LoadBalancer
