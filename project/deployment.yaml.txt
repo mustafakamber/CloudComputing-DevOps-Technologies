@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: devopstech-midterm-app
+    namespace: default
+    labels:
+        app: universities-api
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: universities-api
+    template:
+        metadata:
+            labels:
+                app: universities-api
+        spec:
+            containers:
+                
+name: universities-api
+                image: mustafakamber/devopstech:latest
+                ports:
+containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: universities-api
+    namespace: mustafa
+spec:
+    selector:
+        app: universities-api
+    ports:
+        
+protocol: TCP
+        port: 80
+        targetPort: 5000
+  type: LoadBalancer
