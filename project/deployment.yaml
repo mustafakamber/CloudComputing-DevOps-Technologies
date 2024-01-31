@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: uni-app
+  name: devops-midterm-deployment
   namespace: mustafa
   labels:
-    app: uni-app
+    app: devops-midterm-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: uni-app
+      app: devops-midterm-deployment
   template:
     metadata:
       labels:
-        app: uni-app
+        app: devops-midterm-deployment
     spec:
       containers:
       - name: uni-app
-        image: mustafakamber/devopstech
+        image: mustafakamber/devopstech:latest
         ports:
         - containerPort: 5000
