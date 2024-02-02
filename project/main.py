@@ -14,7 +14,7 @@ class Users(Resource):
             if user_data:
                 return {'data': user_data[0]}, 200
             else:
-                return {'message': f"No entry found with this TC ID: {tc_id}."}, 404
+                return {'message': f"Böyle bir id'ye uygun veri bulunamadi: {tc_id}."}, 404
 
         result = data[['name', 'tc_id', 'university']].to_dict('records')
         return {'data': result}, 200
